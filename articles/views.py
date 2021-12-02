@@ -1,12 +1,12 @@
 from django.views.generic import ListView
 from django.shortcuts import render
 
-from .models import Article, ScopePosition, Scope
+from .models import Article
 
 
 def articles_list(request):
     template = 'articles/news.html'
-    arcticles = Article.objects.all().prefetch_related('tags')
+    arcticles = Article.objects.all()
     context = {
         'object_list': arcticles,
     }

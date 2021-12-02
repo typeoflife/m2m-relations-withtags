@@ -5,7 +5,7 @@ from django.forms import BaseInlineFormSet
 from .models import Article, Scope, ScopePosition
 
 
-class ScopeFormset(BaseInlineFormSet):
+class ScopePositionInlineFormset(BaseInlineFormSet):
     def clean(self):
         t = 0
         for form in self.forms:
@@ -22,15 +22,15 @@ class ScopeFormset(BaseInlineFormSet):
         return super().clean()
 
 
-class ScopeInline(admin.TabularInline):
+class ScopePositionInline(admin.TabularInline):
     model = ScopePosition
-    formset = ScopeFormset
+    formset = ScopePositionInlineFormset
     extra = 0
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    inlines = [ScopeInline]
+    inlines = [ScopePositionInline]
 
 @admin.register(Scope)
 class ScopeAdmin(admin.ModelAdmin):
-    inlines = [ScopeInline]
+    inlines = [ScopePositionInline]
